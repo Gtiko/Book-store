@@ -45,6 +45,10 @@ app.use('/pic', express.static(path.join(fileURLToPath(new URL('.', import.meta.
 app.use("/users", userRouter);
 app.use("/books", bookRouter);
 
+app.get("/test", (req, res)=>{
+  res.send("Mesiye");
+})
+
 app.use((req, res) => {
   res.status(404).send("API not supported...");
 });
