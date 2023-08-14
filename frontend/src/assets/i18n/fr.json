@@ -1,0 +1,16 @@
+{
+    "title":"ርዕስ",
+    "Home": "ቤት",
+    "BookStore":"መጽሀፍ መደብር",
+    "Login": "መግቢያ",
+    "Dont have account":"አካውንት የሎትም",
+    "Create new account": "አዲስ አካውንት ክፈት",
+    "Already have an account":"አካውንት አለኝ",
+    "Login here" : "ወደ መግቢያ",
+    "SignUp":"መመዝገቢያ",
+    "Welcome to BookStore":"እንካን ወደ መጽሀፍ መደብር በሰላም መጡ",
+    "Discover Your Next Adventure":"ቀጣዩን የጀብደኝነት ድርጅታችሁን አወቅ",
+    
+    "Explore a wide range of books and find your next favorite read.":"የተለያዩ መፃህፍትን ይመርምሩ እና ቀጣዩን የምትወዱትን ንባብ ያግኙ",
+    "Featured Books":"የነገ መጽሀፍት"
+}
