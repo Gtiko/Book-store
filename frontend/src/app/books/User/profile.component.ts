@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
-import { environment as env } from '../../../environments/environment';
 import { BookService } from '../book.service';
 import { INITIAL_STATE_VALUE } from 'src/app/bookStore.interface';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-profile',
@@ -14,7 +14,9 @@ import { INITIAL_STATE_VALUE } from 'src/app/bookStore.interface';
       <div
         style="display: flex; justify-content: space-between; cursor: pointer;gap:20px"
       >
-        <h1 (click)="logout()">Logout</h1>
+        <h1 (click)="logout()">
+          <fa-icon [icon]="faSignOutAlt"></fa-icon>
+        </h1>
       </div>
     </header>
 
@@ -49,6 +51,7 @@ export class ProfileComponent {
   authService = inject(AuthService);
   bookService = inject(BookService);
   router = inject(Router);
+  faSignOutAlt = faSignOutAlt;
 
   profile: any = this.authService.state();
   userId: string = this.authService.state()._id;
@@ -58,16 +61,6 @@ export class ProfileComponent {
     this.router.navigate(['', 'users',this.authService.state()._id, 'books', 'editProfile' ])
   }
 
-  // deleteProfile(){
-  //   this.bookService.deleteUser(this.userId).subscribe(
-  //     response =>{
-  //       if(response.success){
-  //         localStorage.clear();
-  //         this.router.navigate(['', 'users','login']);
-  //       }
-  //     }
-  //   )
-  // }
 
   logout() {
     localStorage.clear();

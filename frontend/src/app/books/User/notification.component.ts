@@ -6,16 +6,8 @@ import { BookService } from '../book.service';
 @Component({
   selector: 'app-notification',
   template: `
-    <header style="display: flex; justify-content: space-between; ">
-      <h1 (click)="home()" style="cursor: pointer;">Home</h1>
-      <h1>{{ name }}'s notification</h1>  
-      <div style="display: flex; justify-content: space-between; gap: 20px; margin-right:20px;cursor: pointer;">
-        <h1 (click)="goToFavorites()">Favorites</h1> 
-        <h1 (click)="goToCart()"> cart 
-          <span [ngStyle]="{color: currentCartValue > 0 ? 'red':'#fff'}">({{ currentCartValue }})</span>
-        </h1> 
-      </div>
-    </header>
+  
+    <app-user-nav />
 
     <main  >
         <div *ngFor="let each of orderStatus" >

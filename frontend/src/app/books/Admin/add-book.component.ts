@@ -4,43 +4,15 @@ import { BookService } from '../book.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IBookAttributes } from 'src/app/bookStore.interface';
 import { AuthService } from 'src/app/auth/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-book',
   template: `
-  <header style="display: flex; justify-content: space-between;">
-      <h1 (click)="home()" style=" cursor: pointer;">
-      <img src="/assets/Icons/house.png" alt=""width=45 />
-      </h1>
 
-      <h1>Add Book</h1>
+  <app-nav />
 
-      <div style="display: flex; justify-content: space-between; cursor: pointer;gap:20px">
-          <h1 (click)="orderStatus()">
-          <img src="/assets/Icons/package.png" alt=""width=45 />
-          </h1>
-
-          <h1 [routerLink]="['', 'users', userId, 'books', 'requests']">
-            
-          <img src="/assets/Icons/bell.png" alt=""width=45 /> 
-
-            <span [ngStyle]="{color: numberOfRequests > 0 ? 'red':'#fff'}">({{ numberOfRequests }})</span>
-          </h1>
-          <h1>
-          <img src="/assets/Icons/add.png" alt=""width=45 /> 
-          </h1>
-          <h1 [routerLink]="['', 'users', authService.state()._id,'books', 'createAdmin']">
-          <img src="/assets/Icons/add-user.png" alt=""width=45 /> 
-          </h1>
-          <h1 [routerLink]="['', 'users', authService.state()._id,'books', 'profile']">
-          <img src="/assets/Icons/profile.png" alt=""width=45 /> 
-          </h1>
-      </div>
-  </header>
-
-
-    <form [formGroup]="addBookForm" (ngSubmit)="addBook()" id="forms">
-  <div class="message" [ngStyle]="{'text-align':'center', color: color}">{{message}}</div>
+  <form [formGroup]="addBookForm" (ngSubmit)="addBook()" id="forms">
 
   <div class="book-form">
     <div class="input-group">
@@ -67,6 +39,7 @@ import { AuthService } from 'src/app/auth/auth.service';
   </div>
 </form>
 
+<app-footer/>
 
   `,
   styles: [
@@ -75,13 +48,12 @@ import { AuthService } from 'src/app/auth/auth.service';
 export class AddBookComponent {
   private bookService = inject(BookService);
   private activatedRoute = inject(ActivatedRoute);
+  private toastr = inject(ToastrService);
   private router = inject(Router);
   authService = inject(AuthService);
 
   userId: string = this.activatedRoute.snapshot.paramMap.get('userId') as string
 
-  message: string = '';
-  color: string = 'white';
   bookFile!: File;
   numberOfRequests: number = 0;
 
@@ -121,8 +93,7 @@ export class AddBookComponent {
     this.bookService.addBook(formData).subscribe(
       response => {
         if (response.success) {
-          this.message = "Submitted successfully";
-          this.color = "green";
+          this.toastr.success("Submitted successfully");
 
           this.title.setValue('');
           this.author.setValue('');
@@ -134,8 +105,7 @@ export class AddBookComponent {
           
         } else {
           console.log(response)
-          this.message = response.data
-          this.color = "red"
+          this.toastr.error(response.data);
         }
       }
     )

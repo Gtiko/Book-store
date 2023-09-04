@@ -13,7 +13,7 @@ import { BookService } from './book.service';
     <span>
       <!-- <img [src]="book.pic" alt="Book Cover" [routerLink]="['', 'users', authService.state()._id, 'books',book._id, 'details', ]"> -->
       <img 
-          *ngIf="found" src="http://18.220.178.5:3000/pic/{{filename}}" alt="not provided" 
+          *ngIf="found" src="https://book-store-6aqc.onrender.com/pic/{{filename}}" alt="not provided" 
           [routerLink]="['', 'users', authService.state()._id, 'books',book._id, 'details']"
           
           />

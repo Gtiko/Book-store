@@ -22,6 +22,9 @@ import { ProfileComponent } from './User/profile.component';
 import { EditProfileComponent } from './User/edit-profile.component';
 import { CreateAdminComponent } from './Admin/create-admin.component';
 import { FooterComponent } from './footer.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NavComponent } from './Admin/nav.component';
+import { UserNavComponent } from './User/user-nav.component';
 
 
 
@@ -46,11 +49,14 @@ import { FooterComponent } from './footer.component';
     ProfileComponent,
     EditProfileComponent,
     CreateAdminComponent,
-    FooterComponent
+    FooterComponent,
+    NavComponent,
+    UserNavComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    FontAwesomeModule,
     RouterModule.forChild([
       { path: '', redirectTo: '', pathMatch: "full" },
       { path: 'list', component: AdminListComponent },

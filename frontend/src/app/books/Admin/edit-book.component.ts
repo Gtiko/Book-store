@@ -5,28 +5,19 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { IBookAttributes, IBookResponse, INITIAL_IBooKResponse } from 'src/app/bookStore.interface';
 
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-edit-book',
   template: `
 
-    <header style="display: flex; justify-content: space-between;">
-       <h1 (click)="home()" style=" cursor: pointer;">Home</h1>
-        
-        <h1>Edit - {{ bookTitle }}</h1>
-
-         <div style="display: flex; justify-content: space-between; cursor: pointer;gap:20px">
-             <h1 [routerLink]="['', 'users', authService.state()._id,'books', 'add']">Add book</h1>
-             <h1>hi</h1>
-         </div>
-    </header>
-
+    <app-nav />
 
     <div style="display: flex; justify-content: space-around; padding: 10px;">
 
-     <app-admin-card [book]="bookToUpdate"/>
+    <app-admin-card [book]="bookToUpdate"/>
 
     <form [formGroup]="editBookForm" (ngSubmit)="updateBook()" id="forms">
-      <span [ngStyle]="{'text-align':'center', color: color}">{{message}}</span>
 
       <div class="book-form">
           <div class="input-group">
@@ -65,6 +56,7 @@ export class EditBookComponent {
   private bookService = inject(BookService);
   private activatedRoute = inject(ActivatedRoute);
   private router = inject(Router);
+  private toastr = inject(ToastrService);
   authService = inject(AuthService);
 
   imageUrl: string = '';
@@ -75,8 +67,6 @@ export class EditBookComponent {
   bookId: string = this.activatedRoute.snapshot.paramMap.get('bookId') as string;
 
   bookTitle: string = '';
-  message: string = '';
-  color: string = 'white';
 
   editBookForm = inject(FormBuilder).nonNullable.group({
     title: ['', Validators.required],
@@ -114,8 +104,7 @@ export class EditBookComponent {
     this.bookService.updateBook(this.bookId, this.editBookForm.value as IBookAttributes).subscribe(
       response => {
         if (response.success) {
-          this.message = "Updated Successfully!";
-          this.color = "green";
+          this.toastr.success("Updated Successfully!")
           this.editBookForm.get('title')?.setValue("")
           this.editBookForm.get('author')?.setValue("")
           this.editBookForm.get('ISBN')?.setValue("")
@@ -133,8 +122,7 @@ export class EditBookComponent {
           )
 
         } else {
-          this.message = response.data;
-          this.color = "red"
+          this.toastr.error(response.data);
         }
       }
     )

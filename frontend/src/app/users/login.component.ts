@@ -6,19 +6,22 @@ import { ILogin, IState } from '../bookStore.interface';
 import jwt_decode from 'jwt-decode';
 import { environment as env } from "../../environments/environment"
 import { TranslateService } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
+
+import {faHome} from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-login',
   template: `
     <header style="display: flex; justify-content: space-between;">
     <h1 [routerLink]="['']" style="cursor: pointer;">
-    <img src="/assets/Icons/house.png" alt=""width=45 />
+      <fa-icon [icon]="faHome"></fa-icon>
     </h1>
 
     <h1>{{'BookStore' | translate}}</h1>
     <h1>
     <div>
-      <!-- <label>{{ 'language' | translate }}:</label> -->
+
       <select (change)="changeLanguage($event)">
         <option value="en">{{ 'english' | translate }}</option>
         <option value="fr">{{ 'አማርኛ' | translate }}</option>
@@ -29,10 +32,9 @@ import { TranslateService } from '@ngx-translate/core';
         <div class="signup-container" style="margin-top: 3%;">
           <h1 style="display: flex; justify-content: center;">{{'Login'| translate}}</h1>
 
-          <h4 [ngStyle]="{ color: 'red' }" style="display: flex; justify-content: center;">
-          {{ message }}
-         </h4>
-
+          <span *ngIf="isLoading" class="loading-indicator">
+            <span class="loading-spinner"></span>
+          </span>
 
           <form [formGroup]="loginForm" (ngSubmit)="login()" id="forms">
             <input type="email" placeholder="Email" formControlName="username" /> <br />
@@ -44,8 +46,10 @@ import { TranslateService } from '@ngx-translate/core';
               {{'Create new account' | translate}}</a></p>
           </span>
         </div>
-    <footer style="margin-top: 6%;">
+
+    <footer style="margin-top: 10%;">
       <p>&copy; 2023 BookStore. All rights reserved.</p>
+      contact us: <a href="https://gemechutiko.netlify.app">gemechutiko.netlify.app</a> 
     </footer>
   `,
   styles: [],
@@ -54,14 +58,21 @@ import { TranslateService } from '@ngx-translate/core';
 export class LoginComponent {
   private router = inject(Router);
   private authService = inject(AuthService);
-  message: string = '';
+  private toastr = inject(ToastrService);
+
+  message: string = ""
+  isLoading: boolean = false;
 
   loginForm = inject(FormBuilder).nonNullable.group({
     username: ['', Validators.required],
     password: ['', Validators.required],
   });
 
+  faHome = faHome;
+
   login() {
+    this.isLoading = true;
+    setTimeout(()=>{this.message = "Thanks for waiting this will not take to long"}, 5000);
     this.authService.login(this.loginForm.value as ILogin).subscribe(
       response => {
         if (response.success) {
@@ -74,8 +85,10 @@ export class LoginComponent {
             this.router.navigate(['', 'users', logInState._id, 'books'])
           }
         } else {
-          this.message = response.data
+          this.toastr.error('Wrong username or password');
+          this.message = "";
         }
+        this.isLoading = false;
       }
     )
   }

@@ -6,33 +6,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 @Component({
   selector: 'app-requests',
   template: `
-
-    <header style="display: flex; justify-content: space-between;">
-    <h1 (click)="home()" style=" cursor: pointer;">
-    <img src="/assets/Icons/house.png" alt=""width=45 />
-    </h1>
-    <h1>Requests</h1>
-
-      <div style="display: flex; justify-content: space-between; cursor: pointer;gap:20px">
-          <h1 (click)="orderStatus()">
-            <img src="/assets/Icons/package.png" alt=""width=45 />
-          </h1>
-
-          <h1 [routerLink]="['', 'users', userId, 'books', 'requests']">
-            
-          <img src="/assets/Icons/bell.png" alt=""width=45 /> (0)
-          </h1>
-          <h1 [routerLink]="['', 'users', userId,'books', 'add']">
-          <img src="/assets/Icons/add.png" alt=""width=45 /> 
-          </h1>
-          <h1 [routerLink]="['', 'users', userId,'books', 'createAdmin']">
-            <img src="/assets/Icons/add-user.png" alt=""width=45 /> 
-          </h1>
-          <h1 [routerLink]="['', 'users', userId,'books', 'profile']">
-            <img src="/assets/Icons/profile.png" alt=""width=45 /> 
-          </h1>
-      </div>
-  </header>
+  <app-nav />
   
     <table style="margin-top: 20px;">
   <thead>

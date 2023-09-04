@@ -4,24 +4,26 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
 import { BookService } from '../book.service';
 
+import { ToastrService } from 'ngx-toastr';
+import { faSignOutAlt,faEdit } from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'app-edit-profile',
   template: `
 
     <header style="display: flex; justify-content: space-between;">
     
-      <h1>Edit Profile</h1>
+      <h1><fa-icon [icon]="faEdit"></fa-icon></h1>
       <div
         style="display: flex; justify-content: space-between; cursor: pointer;gap:20px"
       >
-        <h1 (click)="logout()">Logout</h1>
+        <h1 (click)="logout()">
+        <fa-icon [icon]="faSignOutAlt"></fa-icon>
+        </h1>
       </div>
     </header>
 
-    <h1 style="color: green;"> {{ message }}</h1>
-
     <form [formGroup]="editProfile" (ngSubmit)="updateProfile()" id="forms">
-      <span [ngStyle]="{'text-align':'center', color: color}">{{message}}</span>
       <div class="book-form">
           <div class="input-group">
             <input type="text" placeholder="First Name" formControlName="fName">
@@ -49,12 +51,14 @@ export class EditProfileComponent {
 
   authService = inject(AuthService);
   bookService = inject(BookService);
+  private toastr = inject(ToastrService);
+  faSignOutAlt = faSignOutAlt;
+  faEdit = faEdit;
+
   router = inject(Router);
 
   profile: any = this.authService.state();
 
-  message: string = '';
-  color: string = 'white';
 
   get fName(){return this.editProfile.get('fName') as FormControl}
   get lName(){return this.editProfile.get('lName') as FormControl}
@@ -69,11 +73,7 @@ export class EditProfileComponent {
     this.bookService.editProfile(userId, this.editProfile.value).subscribe(
       response =>{
         if(response.success){
-          this.message = "Updated Successfully"
-          setTimeout(()=>{
-            this.message = "";
-          },2000);
-
+          this.toastr.success("Updated Successfully")
           this.authService.state().fName = this.fName.value;
           this.authService.state().lName = this.lName.value;
         }

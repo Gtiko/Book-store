@@ -8,38 +8,14 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 
+import {faHome, faBell, faListUl,faPlus, faFontAwesome, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'app-admin-list',
   template: `
 
-  <header style="display: flex; justify-content: space-between;">
-  <h1 (click)="home()" style=" cursor: pointer;">
-      <img src="/assets/Icons/house.png" alt=""width=45 />
-      </h1>
 
-    <h1>Inventory</h1>
-
-      <div style="display: flex; justify-content: space-between; cursor: pointer;gap:20px">
-          <h1 (click)="orderStatus()">
-          <img src="/assets/Icons/package.png" alt=""width=45 />
-          </h1>
-
-          <h1 [routerLink]="['', 'users', userId, 'books', 'requests']">
-            <img src="/assets/Icons/bell.png" alt=""width=45 /> 
-            <span [ngStyle]="{color: numberOfRequests > 0 ? 'red':'#fff'}">({{ numberOfRequests }})</span>
-          </h1>
-
-          <h1 [routerLink]="['', 'users', authService.state()._id,'books', 'add']">
-              <img src="/assets/Icons/add.png" alt=""width=45 /> 
-          </h1>
-          <h1 [routerLink]="['', 'users', authService.state()._id,'books', 'createAdmin']">
-            <img src="/assets/Icons/add-user.png" alt=""width=45 /> 
-          </h1>
-          <h1 [routerLink]="['', 'users', authService.state()._id,'books', 'profile']">
-            <img src="/assets/Icons/profile.png" alt=""width=45 /> 
-          </h1>
-      </div>
-  </header>
+  <app-nav />
 
   <form [formGroup]="searchForm" style="margin-top: 10px;">
         <input id="search" type="search" placeholder="search" 
@@ -55,10 +31,10 @@ import { FormBuilder } from '@angular/forms';
           <th>ISBN</th>
           <th>Author</th>
           <th>Genre</th>
-          <th>Price</th>
-          <th>Quantity</th>
-          <th>Pub Date</th>
-          <th>Action</th>
+          <th>$</th>
+          <th>Quan</th>
+          <th>Date</th>
+          <th>Act</th>
         </tr>
       </thead>
       <tbody>
@@ -71,17 +47,20 @@ import { FormBuilder } from '@angular/forms';
             <td> {{each.price}}</td>
             <td> {{each.available}}</td>
             <td> {{each.publicationDate}}</td>
-            <td> 
-              <button (click)="editBook(each)" style="background-color: green; width:50%">
+            <td id="action"> 
+              <button (click)="editBook(each)" style="background-color: light-blue;">
                 Edit
               </button>
-              <button (click)="deleteBook(each)" style="background-color: red;width:50%">
+              <button (click)="deleteBook(each)" style="background-color: red;">
                 Delete
               </button>
             </td>
         </tr>
       </tbody>
     </table>
+
+
+  <app-footer />
 
   `,
   styles: [],
@@ -96,6 +75,12 @@ export class AdminListComponent {
   tempBooks: IBookResponse[] = [INITIAL_IBooKResponse];
 
   numberOfRequests: number = 0;
+
+  faPlusCircle = faPlusCircle;
+  faBell= faBell;
+  faHome = faHome;
+  faListUl = faListUl;
+  faFontAwesome = faFontAwesome;
 
   searchForm = inject(FormBuilder).nonNullable.group({
     searchField: ''

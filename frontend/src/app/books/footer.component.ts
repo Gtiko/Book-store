@@ -3,11 +3,9 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-footer',
   template: `
- <footer class="footer" style="margin-top: 15%;">
+ <footer class="footer" >
   <div class="container">
     <div class="footer__content">
-      <div class="footer__logo">
-      </div>
       <div class="footer__links">
         <ul>
           <li><a [routerLink]="['']">Home</a></li>
@@ -19,11 +17,6 @@ import { Component } from '@angular/core';
         <p>Contact Us:</p>
         <p>Email: contact@bookstore.com</p>
         <p>Phone: +1 123-456-7890</p>
-      </div>
-      <div class="footer__social">
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
       </div>
     </div>
     <div class="footer__bottom">

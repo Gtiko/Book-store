@@ -3,22 +3,23 @@ import { BookService } from './book.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IBook, IBookResponse, INITIAL_IBooKResponse } from '../bookStore.interface';
 import { AuthService } from '../auth/auth.service';
+import {faHome, faBell, faStar, faShoppingCart, faListUl, faUserCircle, faUserPlus, faFontAwesome, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-details',
   template: `
     <header style="display: flex; justify-content: space-between; cursor: pointer;">
     <h1 (click)="home()" style=" cursor: pointer;">
-        <img src="/assets/Icons/house.png" alt=""width=45 />
+       <fa-icon [icon]="faHome"></fa-icon>
     </h1>
       <h1> {{ book.title }}</h1>
       <div style="display: flex; justify-content: space-between; gap: 20px; margin-right:20px">
       <h1 (click)="favorites()"> 
-        <img src="/assets/Icons/star.png" alt=""width=45 /> 
+        <fa-icon [icon]="faStar"></fa-icon>
       </h1> 
-      <span (click)="goToCart()"> 
-        <img src="/assets/Icons/carts.png" alt=""width=45 />  
-      </span> 
+      <h1 (click)="goToCart()"> 
+        <fa-icon [icon]="faShoppingCart" ></fa-icon>
+      </h1> 
       </div>
     </header>
 
@@ -60,6 +61,15 @@ export class DetailsComponent {
   currentCartValue : number = 0;
   rating: number = 0;
 
+  faBell= faBell;
+  faStar = faStar;
+  faHome = faHome;
+  faListUl = faListUl;
+  faUserPlus = faUserPlus;
+  faPlusCircle = faPlusCircle;
+  faUserCircle = faUserCircle;
+  faFontAwesome = faFontAwesome;
+  faShoppingCart = faShoppingCart;
 
   ngOnInit(){
    this.bookService.getBookByBookId(this.bookId).subscribe(

@@ -13,6 +13,11 @@ import { environment as env } from '../environments/environment'
 import { IState } from './bookStore.interface';
 import jwt_decode from 'jwt-decode'
 
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+
 import {TranslateLoader, TranslateModule, TranslateStore} from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
@@ -34,11 +39,20 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AppComponent,
     ErrorComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    FontAwesomeModule,
+    ToastrModule.forRoot({
+      timeOut: 3000, 
+      positionClass: 'toast-top-right', 
+      preventDuplicates: true,
+      closeButton: true
+    }),
+    BrowserAnimationsModule,
+
     ReactiveFormsModule,
     TranslateModule.forChild({
       loader:{

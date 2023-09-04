@@ -10,13 +10,12 @@ import { TranslateService } from '@ngx-translate/core';
     <h1>{{'Welcome to BookStore' | translate}}</h1>
 
     <div>
-      <!-- <label>{{ 'language' | translate }}:</label> -->
       <select (change)="changeLanguage($event)">
         <option value="en">{{ 'english' | translate }}</option>
         <option value="fr">{{ 'አማርኛ' | translate }}</option>
       </select>
     </div>
-    <!-- </h1> -->
+    
   </header>
   <main>
     <section class="hero">
@@ -26,7 +25,7 @@ import { TranslateService } from '@ngx-translate/core';
         <a [routerLink]="['', 'users', 'login']" class="cta-btn">View Books</a>
       </div>
     </section>
-    <section id="books" class="book-list">
+    <section class="book-list">
       <h2>{{'Featured Books'| translate}}</h2>
     </section>
     <section class="login-signup">
@@ -36,6 +35,7 @@ import { TranslateService } from '@ngx-translate/core';
   </main>
   <footer>
     <p>&copy; 2023 BookStore. All rights reserved.</p>
+    contact us: <a href="https://gemechutiko.netlify.app">gemechutiko.netlify.app</a> 
   </footer>
 
   `,

@@ -4,15 +4,17 @@ import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
 import { ISingUp } from '../bookStore.interface';
 import { TranslateService } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
 
 
+import {faHome} from '@fortawesome/free-solid-svg-icons'
 @Component({
   selector: 'app-sign-up',
   template: `
 
 <header style="display: flex; justify-content: space-between;">
       <h1 [routerLink]="['']" style="cursor: pointer;">
-        <img src="/assets/Icons/house.png" alt=""width=45 />
+        <fa-icon [icon]="faHome"></fa-icon>
       </h1>
 
   <h1>{{'BookStore' | translate}}</h1>
@@ -30,9 +32,10 @@ import { TranslateService } from '@ngx-translate/core';
   <div class="signup-container">
     <h1 style="display: flex; justify-content: center;">{{'SignUp' | translate}}</h1>
 
-      <h4 [ngStyle]="{ color: 'red' }" style="display: flex; justify-content: center;">
-          {{ message }}
-      </h4>
+      <span *ngIf="isLoading" class="loading-indicator">
+        <span class="loading-spinner"></span>
+        {{message}}
+      </span>
 
     <form [formGroup]="signupForm" (ngSubmit)="signup()" id="forms">
       <div class="form-group">
@@ -53,10 +56,13 @@ import { TranslateService } from '@ngx-translate/core';
       <button type="submit" [disabled]="signupForm.invalid">Sign Up</button>
     </form>
     <p class="login-link">{{'Already have an account'|translate}}? 
-      <a [routerLink]="['', 'users', 'login']">{{'Login here'| translate}}</a></p>
+      <a [routerLink]="['', 'users', 'login']">{{'Login here'| translate}}</a>
+    </p>
   </div>
+  
   <footer>
     <p>&copy; 2023 BookStore. All rights reserved.</p>
+      contact us: <a href="https://gemechutiko.netlify.app">gemechutiko.netlify.app</a>
   </footer>
 
   `,
@@ -66,9 +72,11 @@ import { TranslateService } from '@ngx-translate/core';
 
 export class SignUpComponent {
   private authService = inject(AuthService);
+  private toastr = inject(ToastrService);
   private router = inject(Router);
+  isLoading: boolean = false;
   message: string = "";
-  incorrect: boolean = false;
+  faHome = faHome;
 
   signupForm = inject(FormBuilder).nonNullable.group({
     username: ['', [Validators.required, Validators.email]],
@@ -79,17 +87,22 @@ export class SignUpComponent {
   })
 
   signup() {
+    this.isLoading = true;
+    setTimeout(()=>{this.message = "Thanks for waiting this will not take to long"}, 5000);
     if (this.signupForm.value.password !== this.signupForm.value.password2) {
-      this.incorrect = true;
-      this.message = "password don't match"
+      this.toastr.error("Password don't match");
+      this.message =""
+      this.isLoading = false;
     } else {
       this.authService.signup(this.signupForm.value as ISingUp).subscribe(
         response => {
           if (response.success) {
-            this.router.navigate(['', 'users', 'login'])
+            this.toastr.success("Signed Successfully");
+            this.router.navigate(['', 'users', 'login']);
           } else {
-            this.message = response.data;
-            this.incorrect = true;
+            this.toastr.error( response.data);
+            this.isLoading = false;
+            this.message =""
           }
         }
       )

@@ -9,11 +9,8 @@ import { IBookResponse } from 'src/app/bookStore.interface';
   template: `
 
 
-  <header style="display: flex; justify-content: space-between; cursor: pointer;">
-      <h1 (click)="home()">Home</h1>
-      <h1>Shopping Cart</h1>
-      <h1 (click)="favorites()">Favorites</h1>
-  </header>
+  <app-user-nav />
+  
     <main>
       <div class="cart">
         <h2>Your Cart</h2>

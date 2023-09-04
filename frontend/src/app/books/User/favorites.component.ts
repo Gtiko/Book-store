@@ -8,18 +8,7 @@ import { IBookResponse } from 'src/app/bookStore.interface';
   selector: 'app-favorites',
   template: `
   
-   <header style="display: flex; justify-content: space-between; cursor: pointer;">
-      <h1 (click)="home()">Home</h1>
-      <h1> {{ authService.state().fName }}'s favorites Books! </h1>  
-      <div style="display: flex; justify-content: space-between; gap: 20px; margin-right:20px">
-      <h1 (click)="notification()">Alert 
-          <span [ngStyle]="{color: alerts > 0 ? 'red':'#fff'}"> ({{ alerts }})</span>
-        </h1>
-        <h1 (click)="goToCart()">cart 
-          <span [ngStyle]="{color: currentCartValue > 0 ? 'red':'#fff'}">({{ currentCartValue }})</span>
-        </h1> 
-      </div>
-    </header>
+    <app-user-nav />
 
     <span
       style="display: grid; grid-template-columns: repeat(4, minmax(0px, 1fr)); gap: 20px; padding: 20px;"

@@ -9,7 +9,7 @@ import {
   template: `
     <div class="book-card">
       <span>
-      <img *ngIf="found" src="http://18.220.178.5:3000/pic/{{filename}}" alt="not provided" />
+      <img *ngIf="found" src="https://book-store-6aqc.onrender.com/pic/{{filename}}" alt="not provided" />
       </span>
       <!-- <img [src]="book.pic" alt="Book Cover" /> -->
       <div class="book-details">
@@ -19,6 +19,7 @@ import {
         <div class="btn"></div>
       </div>
     </div>
+    
   `,
   styles: [],
 })

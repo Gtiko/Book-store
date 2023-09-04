@@ -7,36 +7,8 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-create-admin',
   template: `
-
-  <header style="display: flex; justify-content: space-between;">
-     
-
-      <h1 [routerLink]="['', 'users',userId, 'books', 'list' ]"  style=" cursor: pointer;">
-          <img src="/assets/Icons/house.png" alt=""width=45 />
-      </h1>
-      <h1>Create Admin</h1>
-
-      <div style="display: flex; justify-content: space-between; cursor: pointer;gap:20px">
-          <h1 (click)="orderStatus()">
-            <img src="/assets/Icons/package.png" alt=""width=45 />
-          </h1>
-
-          <h1 [routerLink]="['', 'users', userId, 'books', 'requests']">
-            
-          <img src="/assets/Icons/bell.png" alt=""width=45 /> (0)
-          </h1>
-          <h1 [routerLink]="['', 'users', userId,'books', 'add']">
-          <img src="/assets/Icons/add.png" alt=""width=45 /> 
-          </h1>
-          <h1 [routerLink]="['', 'users', userId,'books', 'createAdmin']">
-            <img src="/assets/Icons/add-user.png" alt=""width=45 /> 
-          </h1>
-          <h1 [routerLink]="['', 'users', userId,'books', 'profile']">
-            <img src="/assets/Icons/profile.png" alt=""width=45 /> 
-          </h1>
-      </div>
-  </header>
-
+  
+  <app-nav />
 
   <div class="signup-container">
     <h1 style="display: flex; justify-content: center;">Create Admin</h1>
@@ -65,6 +37,8 @@ import { Router } from '@angular/router';
     </form>
     <!-- <p class="login-link">Already have an account? <a [routerLink]="['', 'users', 'login']">Login here</a></p> -->
   </div>
+
+  <app-footer/>
   `,
   styles: [
   ]

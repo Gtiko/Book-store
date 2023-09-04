@@ -6,35 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   selector: 'app-orders',
   template: `
 
-<header style="display: flex; justify-content: space-between;">
-    <h1 (click)="home()" style=" cursor: pointer;">
-    <img src="/assets/Icons/house.png" alt=""width=45 />
-    </h1>
-
-    <h1>Orders</h1>
-
-    <div style="display: flex; justify-content: space-between; cursor: pointer;gap:20px">
-          <h1>
-          <img src="/assets/Icons/package.png" alt=""width=45 />
-          </h1>
-
-          <h1 [routerLink]="['', 'users', userId, 'books', 'requests']">
-            
-          <img src="/assets/Icons/bell.png" alt=""width=45 /> 
-
-            <span [ngStyle]="{color: numberOfRequests > 0 ? 'red':'#fff'}">({{ numberOfRequests }})</span>
-          </h1>
-          <h1 [routerLink]="['', 'users', userId,'books', 'add']">
-          <img src="/assets/Icons/add.png" alt=""width=45 /> 
-          </h1>
-          <h1 [routerLink]="['', 'users', userId,'books', 'createAdmin']">
-            <img src="/assets/Icons/add-user.png" alt=""width=45 /> 
-          </h1>
-          <h1 [routerLink]="['', 'users', userId,'books', 'profile']">
-            <img src="/assets/Icons/profile.png" alt=""width=45 /> 
-          </h1>
-      </div>
-  </header>
+  <app-nav />
 
   <main *ngIf="exist">
     <div *ngFor="let all of users">
@@ -61,13 +33,14 @@ import { ActivatedRoute, Router } from '@angular/router';
                   <span class="shipment-label">Status:</span>
                   <span class="shipment-value">{{ each.deliveryStatus }}</span>
                   <div class="shipment-buttons">
-                    <button class="shipment-action-btn" (click)="updateOrderStatus(all._id, each.orderId, 'In transit')">In transit</button>
+                    
+                    <button class="shipment-action-btn" (click)="updateOrderStatus(all._id, each.orderId, 'In Transit')">In transit</button>
                     <button class="shipment-action-btn" (click)="updateOrderStatus(all._id, each.orderId, 'Out of delivery')">Out of delivery</button>
                     <button class="shipment-action-btn" (click)="updateOrderStatus(all._id, each.orderId, 'Delivered')">Delivered</button>
                     <button class="shipment-action-btn" (click)="updateOrderStatus(all._id, each.orderId, 'Delayed')">Delayed</button>
                   </div>
                 </div>
-
+                
             </div>
       </div>
     </div>

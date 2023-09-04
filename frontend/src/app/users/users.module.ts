@@ -11,6 +11,8 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -20,6 +22,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    FontAwesomeModule,
     TranslateModule.forChild({
       loader:{
         provide:TranslateLoader,
