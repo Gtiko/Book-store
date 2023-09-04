@@ -35,6 +35,9 @@ import {faHome} from '@fortawesome/free-solid-svg-icons'
           <span *ngIf="isLoading" class="loading-indicator">
             <span class="loading-spinner"></span>
           </span>
+          <span>
+            {{ message }}
+          </span>
 
           <form [formGroup]="loginForm" (ngSubmit)="login()" id="forms">
             <input type="email" placeholder="Email" formControlName="username" /> <br />
@@ -72,7 +75,11 @@ export class LoginComponent {
 
   login() {
     this.isLoading = true;
-    setTimeout(()=>{this.message = "Thanks for waiting this will not take to long"}, 5000);
+    setTimeout(()=>{this.message = "Thanks for waiting"}, 5000);
+    setTimeout(()=>{this.message = "I'm running the backend on render"}, 6000);
+    setTimeout(()=>{this.message = "It will take sometimes to start the server"}, 7000);
+    setTimeout(()=>{this.message = "Thanks for waiting again"}, 8000);
+
     this.authService.login(this.loginForm.value as ILogin).subscribe(
       response => {
         if (response.success) {

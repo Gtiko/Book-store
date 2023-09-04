@@ -8,10 +8,8 @@ import { UserListComponent } from './User/user-list.component';
 import { FavoritesComponent } from './User/favorites.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CreateUserComponent } from './Admin/create-user.component';
 import { CartComponent } from './User/cart.component';
 import { CardsComponent } from './cards.component';
-import { CheckoutComponent } from './User/checkout.component';
 import { RatingComponent } from './User/rating.component';
 import { AdminCardComponent } from './Admin/admin-card.component';
 import { RequestsComponent } from './Admin/requests.component';
@@ -36,10 +34,8 @@ import { UserNavComponent } from './User/user-nav.component';
     DetailsComponent,
     UserListComponent,
     FavoritesComponent,
-    CreateUserComponent,
     CartComponent,
     CardsComponent,
-    CheckoutComponent,
     RatingComponent,
     AdminCardComponent,
     RequestsComponent,
@@ -62,13 +58,11 @@ import { UserNavComponent } from './User/user-nav.component';
       { path: 'list', component: AdminListComponent },
       { path: 'add', component: AddBookComponent },
       { path: ':bookId/edit', component: EditBookComponent },
-      { path: 'create', component: CreateUserComponent },
       { path: '', component: UserListComponent },
       { path: 'favorites', component: FavoritesComponent },
       { path: 'cart', component: CartComponent },
       { path: ':bookId/details', component: DetailsComponent },
       { path: 'card', component: CardsComponent },
-      { path: 'checkout', component: CheckoutComponent },
       { path: 'requests', component: RequestsComponent },
       { path: 'notification', component: NotificationComponent },
       { path: 'orders', component: OrdersComponent },

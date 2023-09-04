@@ -3,6 +3,7 @@ import { BookService } from '../book.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
 
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-requests',
   template: `
@@ -45,6 +46,7 @@ export class RequestsComponent {
   private activatedRoute = inject(ActivatedRoute);
   private router = inject(Router);
   authService = inject(AuthService);
+  private toastr = inject(ToastrService);
 
   userId: string = this.activatedRoute.snapshot.paramMap.get(
     'userId'
@@ -67,6 +69,7 @@ export class RequestsComponent {
     this.bookService.ApproveCheckoutRequest(userId, ISBN).subscribe(
       response => {
         if (response.success) {
+          this.toastr.success('Request Accepted');
           this.getRequests();
         }
       }

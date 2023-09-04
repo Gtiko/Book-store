@@ -62,7 +62,7 @@ import {faHome} from '@fortawesome/free-solid-svg-icons'
   
   <footer>
     <p>&copy; 2023 BookStore. All rights reserved.</p>
-      contact us: <a href="https://gemechutiko.netlify.app">gemechutiko.netlify.app</a>
+      contact us: <a href="https://gemechutiko.netlify.app">gemechutiko.com</a>
   </footer>
 
   `,
@@ -88,7 +88,12 @@ export class SignUpComponent {
 
   signup() {
     this.isLoading = true;
-    setTimeout(()=>{this.message = "Thanks for waiting this will not take to long"}, 5000);
+    
+    setTimeout(()=>{this.message = "Thanks for waiting"}, 5000);
+    setTimeout(()=>{this.message = "I'm running the backend on render"}, 6000);
+    setTimeout(()=>{this.message = "It will take sometimes to start the server"}, 7000);
+    setTimeout(()=>{this.message = "Thanks for waiting again"}, 8000);
+
     if (this.signupForm.value.password !== this.signupForm.value.password2) {
       this.toastr.error("Password don't match");
       this.message =""

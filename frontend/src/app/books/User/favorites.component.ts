@@ -10,12 +10,9 @@ import { IBookResponse } from 'src/app/bookStore.interface';
   
     <app-user-nav />
 
-    <span
-      style="display: grid; grid-template-columns: repeat(4, minmax(0px, 1fr)); gap: 20px; padding: 20px;"
-    >
+    <span class="favBooks" >
       <span *ngFor="let each of favoriteBooks">
         <app-cards [book]="each" />
-        
       </span>
     </span>
   `,

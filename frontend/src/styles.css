@@ -1,21 +1,4 @@
 
-@media screen and (min-width: 768px) {
-  input {
-    font-size: 24px;
-    padding: 20px;
-    max-width: 100%;
-  }
-}
-
-@media screen and (max-width: 767px) {
-  input {
-    font-size: 20px;
-    padding: 15px;
-    max-width: 100%;
-  }
-}
-
-
 #forms{
   padding: 50px;
   margin-left: 30%;
@@ -234,6 +217,7 @@ header{background-color: #142057;color:#fff;text-align:center;padding:1rem}
 
 /* Media query for laptops/desktops */
 @media (min-width: 768px) {
+
   .book-card {
     flex-direction: column;
     max-width: 400px;
@@ -265,6 +249,12 @@ header{background-color: #142057;color:#fff;text-align:center;padding:1rem}
   .shipment-buttons {
     display: flex;
     align-items: center;
+  }
+  .favBooks{
+    display: grid; 
+    grid-template-columns: repeat(4, minmax(0px, 1fr)); 
+    gap: 3%; 
+    padding: 2%;
   }
 }
 
@@ -331,8 +321,13 @@ header{background-color: #142057;color:#fff;text-align:center;padding:1rem}
   }
   
   .shipment-buttons {
-    /* display: flex; */
     align-items: center;    
+  }
+  .favBooks{
+    display: grid; 
+    grid-template-columns: repeat(2, minmax(0px, 1fr)); 
+    gap: 3%; 
+    padding: 5%;
   }
 
 }

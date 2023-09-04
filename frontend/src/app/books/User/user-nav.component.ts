@@ -11,38 +11,40 @@ import {faHome, faBell, faStar, faShoppingCart, faListUl, faUserCircle, faUserPl
   selector: 'app-user-nav',
   template: `
       
-    <header style="display: flex; justify-content: space-between; ">
+  <header style="display: flex; justify-content: space-between; ">
 
-    <h1 (click)="home()" style=" cursor: pointer;">
-      <fa-icon [icon]="faHome"></fa-icon>
-    </h1>
-
-      <div style="display: flex; justify-content: space-between; gap: 20px; margin-right:20px;cursor: pointer;">
-        
-      <h1 (click)="notification()">
-        <fa-icon [icon]="faBell" class="icon"></fa-icon>
+      <h1 (click)="home()" style=" cursor: pointer;" title="Home">
+        <fa-icon [icon]="faHome"></fa-icon>
       </h1>
-        <span [ngStyle]="{color: alerts > 0 ? 'red':''}" *ngIf="alerts > 0"> ({{ alerts }})</span>
+
+    <div style="display: flex; justify-content: space-between; gap: 20px; margin-right:20px;cursor: pointer;">
+        
+      <h1 (click)="notification()" title="Orders History">
+        <span [ngStyle]="{color: alerts > 0 ? 'red':''}" *ngIf="alerts > 0"
+        style="font-size: small;"
+        > ({{ alerts }})</span>
+        <fa-icon [icon]="faListUl" class="icon"></fa-icon>
+      </h1>
       
 
-      <h1 (click)="goToFavorites()"> 
+      <h1 (click)="goToFavorites()" title="Favorite"> 
         <fa-icon [icon]="faStar"></fa-icon>
       </h1> 
 
-      <h1 (click)="goToCart()"> 
+      <h1 (click)="goToCart()" title="Cart"> 
         <fa-icon [icon]="faShoppingCart" ></fa-icon>
-      </h1> 
-
-      <span [ngStyle]="{color: currentCartValue > 0 ? 'red':'#fff'}"
-      *ngIf="currentCartValue > 0"
-      >({{ currentCartValue }})</span>
+        <span [ngStyle]="{color: currentCartValue > 0 ? 'red':'#fff'}" *ngIf="currentCartValue > 0" style="font-size: small;"
+        >({{ currentCartValue }})
+        </span>
+      </h1>
         
-        <h1 [routerLink]="['', 'users', userId,'books', 'profile']">
+      <h1 [routerLink]="['', 'users', userId,'books', 'profile']" title="Profile">
          <fa-icon [icon]="faUserCircle" class="icon"></fa-icon>
-        </h1>
-      </div>
+      </h1>
 
-    </header>
+    </div>
+
+  </header>
   
   `,
   styles: [
