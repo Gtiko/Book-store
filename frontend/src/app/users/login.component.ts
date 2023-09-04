@@ -35,8 +35,12 @@ import {faHome} from '@fortawesome/free-solid-svg-icons'
           <span *ngIf="isLoading" class="loading-indicator">
             <span class="loading-spinner"></span>
           </span>
-          <span>
+          <span >
+           
+            <div style="text-align: center; color: green">
             {{ message }}
+            </div>
+            
           </span>
 
           <form [formGroup]="loginForm" (ngSubmit)="login()" id="forms">
@@ -52,7 +56,7 @@ import {faHome} from '@fortawesome/free-solid-svg-icons'
 
     <footer style="margin-top: 10%;">
       <p>&copy; 2023 BookStore. All rights reserved.</p>
-      contact us: <a href="https://gemechutiko.netlify.app">gemechutiko.netlify.app</a> 
+      contact us: <a href="https://gemechutiko.netlify.app">gemechutiko.com</a> 
     </footer>
   `,
   styles: [],
@@ -76,9 +80,9 @@ export class LoginComponent {
   login() {
     this.isLoading = true;
     setTimeout(()=>{this.message = "Thanks for waiting"}, 5000);
-    setTimeout(()=>{this.message = "I'm running the backend on render"}, 6000);
-    setTimeout(()=>{this.message = "It will take sometimes to start the server"}, 7000);
-    setTimeout(()=>{this.message = "Thanks for waiting again"}, 8000);
+    setTimeout(()=>{this.message = "I'm running the backend on render"}, 8000);
+    setTimeout(()=>{this.message = "It will take sometimes to start the server"}, 11000);
+    setTimeout(()=>{this.message = "Thanks for waiting again"}, 15000);
 
     this.authService.login(this.loginForm.value as ILogin).subscribe(
       response => {

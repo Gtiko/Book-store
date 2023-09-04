@@ -33,8 +33,10 @@ import {faHome} from '@fortawesome/free-solid-svg-icons'
     <h1 style="display: flex; justify-content: center;">{{'SignUp' | translate}}</h1>
 
       <span *ngIf="isLoading" class="loading-indicator">
-        <span class="loading-spinner"></span>
-        {{message}}
+        <span class="loading-spinner"></span>         
+           <div style="text-align: center; color: green">
+           {{ message }}
+           </div>
       </span>
 
     <form [formGroup]="signupForm" (ngSubmit)="signup()" id="forms">
@@ -90,9 +92,10 @@ export class SignUpComponent {
     this.isLoading = true;
     
     setTimeout(()=>{this.message = "Thanks for waiting"}, 5000);
-    setTimeout(()=>{this.message = "I'm running the backend on render"}, 6000);
-    setTimeout(()=>{this.message = "It will take sometimes to start the server"}, 7000);
-    setTimeout(()=>{this.message = "Thanks for waiting again"}, 8000);
+    setTimeout(()=>{this.message = "I'm running the backend on render"}, 8000);
+    setTimeout(()=>{this.message = "It will take sometimes to start the server"}, 11000);
+    setTimeout(()=>{this.message = "Thanks for waiting again"}, 15000);
+
 
     if (this.signupForm.value.password !== this.signupForm.value.password2) {
       this.toastr.error("Password don't match");
